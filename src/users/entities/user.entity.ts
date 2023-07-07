@@ -1,5 +1,13 @@
 import { Exclude, Expose } from 'class-transformer';
+import { Asset } from 'src/asset/entities/asset.entity';
+import { Family } from 'src/classify/entities/family.entity';
+import { Author } from 'src/author/entities/author.entity';
+import { Group } from 'src/classify/entities/group.entity';
+import { Set } from 'src/classify/entities/set.entity';
+import { Species } from 'src/classify/entities/species.entity';
 import { Creature } from 'src/creatures/entities/creature.entity';
+import { Post } from 'src/post/entities/post.entity';
+import { PostCategory } from 'src/postCategory/entities/postCategory.entity';
 import {
   Column,
   CreateDateColumn,
@@ -8,6 +16,9 @@ import {
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  Tree,
+  TreeChildren,
+  TreeParent,
   UpdateDateColumn,
 } from 'typeorm';
 
@@ -18,6 +29,7 @@ export enum UserRole {
 }
 
 @Entity({ name: 'users' })
+@Tree('nested-set')
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -56,19 +68,66 @@ export class User {
   @UpdateDateColumn()
   updated_at: Date; // Last updated date
 
-  @ManyToOne('User', 'User')
-  @JoinColumn([{ name: 'created_by', referencedColumnName: 'id' }])
-  createdUser: User;
+  @TreeChildren()
+  children: User[];
 
-  @ManyToOne('User', 'User')
-  @JoinColumn([
-    {
-      name: 'updated_by',
-      referencedColumnName: 'id',
-    },
-  ])
-  updatedUser: User;
+  @TreeParent()
+  parent: User;
 
-  @OneToMany((type) => Creature, (creature) => creature.created_by)
-  creatures: Creature[];
+  // @OneToMany(() => Post, (post) => post.category)
+  // posts: Post[];
+
+  @OneToMany(() => Creature, (creature) => creature.updated_by)
+  creaturesUpdated: Creature[];
+
+  @OneToMany(() => Creature, (creature) => creature.created_by)
+  creaturesCreated: Creature[];
+
+  @OneToMany(() => Author, (author) => author.created_by)
+  authorCreated: Author[];
+
+  @OneToMany(() => Author, (author) => author.updated_by)
+  authorUpdated: Author[];
+
+  @OneToMany(() => PostCategory, (postCategory) => postCategory.created_by)
+  postCategoriesCreated: PostCategory[];
+
+  @OneToMany(() => PostCategory, (postCategory) => postCategory.updated_by)
+  postCategoriesUpdated: PostCategory[];
+
+  // @OneToMany(() => Post, (post) => post.created_by)
+  // postsCreated: Post[];
+
+  // @OneToMany(() => Post, (post) => post.updated_by)
+  // postsUpdated: Post[];
+
+  @OneToMany(() => Asset, (asset) => asset.created_by)
+  assetsCreated: Post[];
+
+  @OneToMany(() => Asset, (asset) => asset.updated_by)
+  assetsUpdated: Asset[];
+
+  @OneToMany(() => Species, (species) => species.created_by)
+  speciesCreated: Species[];
+
+  @OneToMany(() => Species, (species) => species.updated_by)
+  speciesUpdated: Species[];
+
+  @OneToMany(() => Group, (group) => group.created_by)
+  groupsCreated: Group[];
+
+  @OneToMany(() => Group, (group) => group.updated_by)
+  groupsUpdated: Group[];
+
+  @OneToMany(() => Set, (set) => set.created_by)
+  setCreated: Set[];
+
+  @OneToMany(() => Set, (set) => set.updated_by)
+  setUpdated: Set[];
+
+  @OneToMany(() => Family, (family) => family.created_by)
+  familyCreated: Family[];
+
+  @OneToMany(() => Family, (family) => family.updated_by)
+  familyUpdated: Family[];
 }

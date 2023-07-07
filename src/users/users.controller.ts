@@ -23,10 +23,7 @@ export class UsersController {
   ) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    this.logger.log('This action adds a new user');
-
-    return 'This action adds a new user';
+  async create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
 

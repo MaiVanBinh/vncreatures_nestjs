@@ -1,7 +1,18 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Asset } from 'src/asset/entities/asset.entity';
+import { BaseEntity } from 'src/entities/BaseColumnSchemaPart.entity';
+import { User } from 'src/users/entities/user.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
-@Entity({ name: 'creatures'})
-export class Creature {
+@Entity({ name: 'creatures' })
+export class Creature extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -35,15 +46,15 @@ export class Creature {
   @Column()
   redbook_level: string;
 
-  @Column()
-  created_by: string;
+  @ManyToOne(() => User, (user) => user.creaturesCreated)
+  @JoinColumn({ name: 'created_by' })
+  created_by: User;
 
-  @Column()
-  updated_by: string;
+  @ManyToOne(() => User, (user) => user.creaturesUpdated)
+  @JoinColumn({ name: 'updated_by' })
+  updated_by: User;
 
-  @CreateDateColumn()
-  created_at: Date; // Creation date
-
-  @UpdateDateColumn()
-  updated_at: Date; // Last updated date
+  @ManyToMany(() => Asset)
+  @JoinTable()
+  assets: Asset[];
 }
