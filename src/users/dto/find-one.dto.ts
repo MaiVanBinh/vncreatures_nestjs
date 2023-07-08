@@ -1,13 +1,16 @@
-import { IsEmail, IsNumber, IsNumberString, IsString } from 'class-validator';
+import { IsEmail, IsNumberString, IsString, IsOptional } from 'class-validator';
 
 export class FindOneParams {
   @IsNumberString()
-  id: number;
+  @IsOptional()
+  id?: number;
 
   @IsString()
   @IsEmail()
+  @IsOptional()
   email?: string;
 
   @IsString()
-  user_name?: string;
+  @IsOptional()
+  username?: string;
 }

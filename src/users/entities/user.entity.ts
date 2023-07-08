@@ -21,6 +21,7 @@ import {
   TreeParent,
   UpdateDateColumn,
 } from 'typeorm';
+import { IsOptional } from 'class-validator';
 
 export enum UserRole {
   ADMIN = '2',
@@ -29,7 +30,6 @@ export enum UserRole {
 }
 
 @Entity({ name: 'users' })
-@Tree('nested-set')
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -68,11 +68,24 @@ export class User {
   @UpdateDateColumn()
   updated_at: Date; // Last updated date
 
-  @TreeChildren()
-  children: User[];
+  @ManyToOne('User', 'User')
+  @JoinColumn([{ name: 'created_by', referencedColumnName: 'id' }])
+  createdUser: User;
 
-  @TreeParent()
-  parent: User;
+  @ManyToOne('User', 'User')
+  @JoinColumn([
+    {
+      name: 'updated_by',
+      referencedColumnName: 'id',
+    },
+  ])
+  updatedUser: User;
+
+  @Column({
+    unique: true,
+  })
+  @IsOptional()
+  refresh_token: string;
 
   // @OneToMany(() => Post, (post) => post.category)
   // posts: Post[];

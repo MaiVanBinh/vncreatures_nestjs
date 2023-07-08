@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { FindOneParams } from './dto/find-one.dto';
+import { AuthUserRequest } from './dto/auth-user-request.dto';
 
 @Injectable()
 export class UsersService {
@@ -28,25 +29,30 @@ export class UsersService {
   }
 
   async findOne(id: number) {
-    const user = await this.findOneBy({
-      id,
-    });
-    console.log(user);
+    const user = await this.usersRepository.findOneBy({ id });
     return user;
   }
 
-  async findOneBy(findOneParams: FindOneParams) {
-    const user = await this.usersRepository.findOne({
+  async findOneBy(findOneParams: AuthUserRequest) {
+    const user = await this.usersRepository.find({
       where: {
-        ...findOneParams,
+        username: findOneParams.username,
       },
     });
-    console.log(user);
-    return user;
+    return user?.[0];
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
+  }
+
+  async updateRefreshToken(userId: number, refreshToken: string) {
+    await this.usersRepository
+      .createQueryBuilder()
+      .update()
+      .set({ refresh_token: refreshToken })
+      .where('id = :id', { id: userId })
+      .execute();
   }
 
   remove(id: number) {

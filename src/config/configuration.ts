@@ -1,3 +1,4 @@
+import { JwtModuleOptions } from '@nestjs/jwt';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 export default () => {
@@ -25,24 +26,12 @@ export default () => {
     options: dbOptions,
     migrations: [`${__dirname}/../../db/migrations/*{.ts,.js}`],
     cli: { migrationsDir: 'db/migrations' },
-    replication: {
-      master: {
-        host: process.env.DB_HOST || 'localhost',
-        port: parseInt(process.env.DB_PORT, 10) || 3306,
-        username: process.env.DB_USER || 'root',
-        password: process.env.DB_PASSWORD || '',
-        database: process.env.DB_NAME || 'vncreatures',
-      },
-      slaves: [
-        {
-          host: process.env.DB_HOST || 'localhost',
-          port: parseInt(process.env.DB_PORT, 10) || 3306,
-          username: process.env.DB_USER || 'root',
-          password: process.env.DB_PASSWORD || '',
-          database: process.env.DB_NAME || 'vncreatures1',
-        },
-      ],
-    },
+    host: process.env.DB_HOST || 'localhost',
+    port: parseInt(process.env.DB_PORT, 10) || 3306,
+    username: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
+    database: process.env.DB_NAME || 'vncreatures',
+
     /**
      * If true, PoolCluster will attempt to reconnect when connection fails. (Default: true)
      */
@@ -75,10 +64,26 @@ export default () => {
     port: parseInt(process.env.DB_PORT, 10) || 6379,
   };
 
+  const jwtConfig = {
+    secret: process.env.JWT_CONFIG || 'jwtConfig',
+    signOptions: {
+      expiresIn: '10h',
+    },
+  } as JwtModuleOptions;
+
+  const jwtConfigRefresh = {
+    secret: process.env.JWT_CONFIG || 'jwtConfigRefresh',
+    signOptions: {
+      expiresIn: '10h',
+    },
+  } as JwtModuleOptions;
+
   const config = {
     port: parseInt(process.env.PORT, 10) || 3000,
     dbConfig,
     redis,
+    jwtConfig,
+    jwtConfigRefresh,
   };
   return config;
 };
