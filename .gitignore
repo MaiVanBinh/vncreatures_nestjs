@@ -1,7 +1,7 @@
 # compiled output
 /dist
 /node_modules
-/db/vncreatures.sql
+/db/*.sql
 .env
 .env.development
 
@@ -36,5 +36,4 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-./db/vncreatures.sql
 
