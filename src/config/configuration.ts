@@ -67,16 +67,21 @@ export default () => {
   const jwtConfig = {
     secret: process.env.JWT_CONFIG || 'jwtConfig',
     signOptions: {
-      expiresIn: '10h',
+      expiresIn: '1h',
     },
   } as JwtModuleOptions;
 
   const jwtConfigRefresh = {
     secret: process.env.JWT_CONFIG || 'jwtConfigRefresh',
     signOptions: {
-      expiresIn: '10h',
+      expiresIn: '24h',
     },
   } as JwtModuleOptions;
+
+  const clientAuth = {
+    api_client_secret: 'api_client_secret',
+    api_client_id: 'api_client_id',
+  };
 
   const config = {
     port: parseInt(process.env.PORT, 10) || 3000,
@@ -84,6 +89,7 @@ export default () => {
     redis,
     jwtConfig,
     jwtConfigRefresh,
+    clientAuth,
   };
   return config;
 };

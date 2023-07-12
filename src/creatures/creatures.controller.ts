@@ -6,10 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Query,
 } from '@nestjs/common';
 import { CreaturesService } from './creatures.service';
 import { CreateCreatureDto } from './dto/create-creature.dto';
 import { UpdateCreatureDto } from './dto/update-creature.dto';
+import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
+import { GetCreatureDto } from './dto/get-creature.dto';
 
 @Controller('creatures')
 export class CreaturesController {
@@ -21,8 +25,15 @@ export class CreaturesController {
   }
 
   @Get()
-  findAll() {
-    return this.creaturesService.findAll();
+  @UseGuards(JwtAuthGuard)
+  findAll(@Query() query: GetCreatureDto) {
+    return this.creaturesService.findAll(query);
+  }
+
+  @Get('red-book-by-type')
+  @UseGuards(JwtAuthGuard)
+  findCreatureRedBookByType(@Query() query: GetCreatureDto) {
+    return this.creaturesService.findCreatureRedBookByType();
   }
 
   @Get(':id')

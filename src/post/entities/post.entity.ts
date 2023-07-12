@@ -53,8 +53,18 @@ export class Post extends BaseEntity {
   @Column()
   description: string;
 
-  @ManyToMany(() => Post)
-  @JoinTable()
+  @ManyToMany(() => Asset)
+  @JoinTable({
+    name: 'assets_posts', // table name for the junction table of this relation
+    joinColumn: {
+      name: 'post',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'asset ',
+      referencedColumnName: 'id',
+    },
+  })
   assets: Asset[];
 
   // @ManyToOne(() => User, (user) => user.postsCreated)

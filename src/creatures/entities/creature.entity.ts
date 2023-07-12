@@ -55,6 +55,16 @@ export class Creature extends BaseEntity {
   updated_by: User;
 
   @ManyToMany(() => Asset)
-  @JoinTable()
+  @JoinTable({
+    name: 'assets_creatures', // table name for the junction table of this relation
+    joinColumn: {
+      name: 'creature',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'asset',
+      referencedColumnName: 'id',
+    },
+  })
   assets: Asset[];
 }

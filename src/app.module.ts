@@ -11,8 +11,8 @@ import { validate } from './validation/env.validation';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ScheduleModule } from '@nestjs/schedule';
 import { BullModule } from '@nestjs/bull';
-import { GraphQLModule } from '@nestjs/graphql';
 import { AuthModule } from './auth/auth.module';
+import { PostsModule } from './post/post.module';
 
 @Module({
   imports: [
@@ -36,6 +36,7 @@ import { AuthModule } from './auth/auth.module';
     UsersModule,
     ScheduleModule.forRoot(),
     AuthModule,
+    PostsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

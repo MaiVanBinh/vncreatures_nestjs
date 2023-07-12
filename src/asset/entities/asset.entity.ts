@@ -11,7 +11,9 @@ import {
   ManyToOne,
 } from 'typeorm';
 
-@Entity()
+@Entity({
+  name: 'assets',
+})
 export class Asset extends BaseEntity {
   @Column()
   url: string;
@@ -20,7 +22,7 @@ export class Asset extends BaseEntity {
   name: string;
 
   @Column()
-  source: string;
+  author_name: string;
 
   @Column()
   mime_type: string;
@@ -29,11 +31,31 @@ export class Asset extends BaseEntity {
   size: number;
 
   @ManyToMany(() => Post)
-  @JoinTable()
+  @JoinTable({
+    name: 'assets_posts', // table name for the junction table of this relation
+    joinColumn: {
+      name: 'asset',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'post',
+      referencedColumnName: 'id',
+    },
+  })
   posts: Post[];
 
   @ManyToMany(() => Creature)
-  @JoinTable()
+  @JoinTable({
+    name: 'assets_creatures', // table name for the junction table of this relation
+    joinColumn: {
+      name: 'asset',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'creature',
+      referencedColumnName: 'id',
+    },
+  })
   creatures: Creature[];
 
   @ManyToOne(() => User, (user) => user.assetsCreated)

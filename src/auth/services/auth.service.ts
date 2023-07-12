@@ -3,12 +3,14 @@ import { AuthUserRequest } from 'src/users/dto/auth-user-request.dto';
 import { User } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { JwtServiceCustomer } from './jwt.service';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
   constructor(
     private userService: UsersService,
     private jwtService: JwtServiceCustomer,
+    private readonly configService: ConfigService,
   ) {}
 
   async validateUser(authUserRequest: AuthUserRequest) {
@@ -32,10 +34,8 @@ export class AuthService {
   }
 
   async login(user: User) {
-    const { accessToken, refreshToken } = await this.getTokens(
-      user.id,
-      user.username,
-    );
+    const { access_token: accessToken, refresh_token: refreshToken } =
+      await this.getTokens(user.id, user.username);
 
     await this.userService.updateRefreshToken(user.id, refreshToken);
 
@@ -44,6 +44,11 @@ export class AuthService {
       status: HttpStatus.OK,
       error: null,
     };
+  }
+
+  async genTokenFormClient() {
+    const token = this.getTokens(-1, 'vncreatures');
+    return token;
   }
 
   async getTokens(id: number, username: string, userRefreshToken?: string) {
@@ -56,10 +61,17 @@ export class AuthService {
       id,
       userRefreshToken,
     );
+    const jwtConfigRefresh = this.configService.get('jwtConfigRefresh');
+    const jwtConfig = this.configService.get('jwtConfig');
 
     return {
-      accessToken,
-      refreshToken,
+      access_token: accessToken,
+      refresh_token: refreshToken,
+      expires_in: jwtConfig.signOptions.expiresIn.replace('h', ''),
+      expires_in_refresh: jwtConfigRefresh.signOptions.expiresIn.replace(
+        'h',
+        '',
+      ),
     };
   }
 
@@ -70,11 +82,10 @@ export class AuthService {
       throw new ForbiddenException('Access Denied');
 
     const tokens = await this.getTokens(user.id, user.username);
-    await this.userService.updateRefreshToken(user.id, tokens.refreshToken);
+    await this.userService.updateRefreshToken(user.id, tokens.refresh_token);
     return {
       data: {
-        access_token: tokens.accessToken,
-        refresh_token: tokens.refreshToken,
+        tokens,
       },
       status: HttpStatus.OK,
       error: null,

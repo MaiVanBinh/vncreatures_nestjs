@@ -11,6 +11,7 @@ import { AuthService } from './services/auth.service';
 import { JwtAuthGuard } from './guard/jwt-auth.guard';
 import { LocalAuthGuard } from './guard/local-auth.guard';
 import { RefreshTokenGuard } from './guard/refreshToken.guard';
+import { ClientAuthGuard } from './guard/client.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -20,6 +21,12 @@ export class AuthController {
   @Post('login')
   async login(@Request() req) {
     return this.authService.login(req.user);
+  }
+
+  @UseGuards(ClientAuthGuard)
+  @Post('Oauth')
+  async Oauth() {
+    return this.authService.genTokenFormClient();
   }
 
   @UseGuards(JwtAuthGuard)
@@ -33,6 +40,12 @@ export class AuthController {
   refreshTokens(@Req() req: any) {
     const refreshToken = req.user['refreshToken'];
     return this.authService.refreshTokens(refreshToken);
+  }
+
+  @UseGuards(RefreshTokenGuard)
+  @Get('refresh-oauth')
+  refreshOauthTokens() {
+    return this.authService.genTokenFormClient();
   }
 
   @UseGuards(JwtAuthGuard)
