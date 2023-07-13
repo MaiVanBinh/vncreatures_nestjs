@@ -5,7 +5,9 @@ import { Species } from './species.entity';
 import { Group } from './group.entity';
 import { Set } from './set.entity';
 
-@Entity()
+@Entity({
+  name: 'families',
+})
 export class Family extends BaseClassify {
   @ManyToOne(() => User, (user) => user.familyCreated)
   @JoinColumn({
@@ -21,7 +23,7 @@ export class Family extends BaseClassify {
 
   @ManyToOne(() => Set, (set) => set.familiesBelong)
   @JoinColumn({
-    name: 'set',
+    name: 'order',
   })
   set: Set;
 }

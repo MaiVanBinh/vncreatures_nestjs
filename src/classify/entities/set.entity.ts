@@ -5,7 +5,9 @@ import { Species } from './species.entity';
 import { Group } from './group.entity';
 import { Family } from './family.entity';
 
-@Entity()
+@Entity({
+  name: 'orders',
+})
 export class Set extends BaseClassify {
   @ManyToOne(() => User, (user) => user.setCreated)
   @JoinColumn({

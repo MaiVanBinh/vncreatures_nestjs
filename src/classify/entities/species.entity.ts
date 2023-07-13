@@ -1,10 +1,13 @@
-import { BaseClassify } from 'src/entities/BaseClassify.entity';
+import { BaseClassifyRaw } from 'src/entities/BaseClassify.entity';
 import { User } from 'src/users/entities/user.entity';
-import { Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { Group } from './group.entity';
 
 @Entity()
-export class Species extends BaseClassify {
+export class Species extends BaseClassifyRaw {
+  @Column()
+  name_en: string;
+
   @ManyToOne(() => User, (user) => user.speciesCreated)
   @JoinColumn({
     name: 'created_by',

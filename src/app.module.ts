@@ -13,9 +13,16 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { BullModule } from '@nestjs/bull';
 import { AuthModule } from './auth/auth.module';
 import { PostsModule } from './post/post.module';
+import { ClassifyModule } from './classify/classify.module';
+import { CacheModule, CacheInterceptor } from '@nestjs/cache-manager';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({
   imports: [
+    CacheModule.register({
+      ttl: 24 * 3600, // seconds
+      isGlobal: true,
+    }),
     ConfigModule.forRoot({
       validate,
       load: [configuration],
@@ -37,8 +44,15 @@ import { PostsModule } from './post/post.module';
     ScheduleModule.forRoot(),
     AuthModule,
     PostsModule,
+    ClassifyModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CacheInterceptor,
+    },
+  ],
 })
 export class AppModule {}

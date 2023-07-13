@@ -944,6 +944,11 @@
     "@nestjs/bull-shared" "^0.1.3"
     "tslib" "2.5.0"
 
+"@nestjs/cache-manager@^2.0.1":
+  "integrity" "sha512-UxDeuarskoSPVzLRl6SVNaUlGnwclhq48JCvQ/zu7W2RRaBqlxzfM8/CaRjrpSwC7/LVrLKv+f9EoAWYOvSULg=="
+  "resolved" "https://registry.npmjs.org/@nestjs/cache-manager/-/cache-manager-2.0.1.tgz"
+  "version" "2.0.1"
+
 "@nestjs/cli@^9.0.0":
   "integrity" "sha512-Z7q+3vNsQSG2d2r2Hl/OOj5EpfjVx3OfnJ9+KuAsOdw1sKLm7+Zc6KbhMFTd/eIvfx82ww3Nk72xdmfPYCulWA=="
   "resolved" "https://npm.vexere.net/@nestjs%2fcli/-/cli-9.5.0.tgz"
@@ -972,7 +977,7 @@
     "webpack" "5.82.1"
     "webpack-node-externals" "3.0.0"
 
-"@nestjs/common@^6.10.11 || ^7.0.0 || ^8.0.0 || ^9.0.0", "@nestjs/common@^7.0.0 || ^8.0.0 || ^9.0.0", "@nestjs/common@^7.0.8 || ^8.0.0 || ^9.0.0", "@nestjs/common@^8.0.0 || ^9.0.0", "@nestjs/common@^8.0.0 || ^9.0.0 || ^10.0.0", "@nestjs/common@^9.0.0", "@nestjs/common@^9.3.8":
+"@nestjs/common@^6.10.11 || ^7.0.0 || ^8.0.0 || ^9.0.0", "@nestjs/common@^7.0.0 || ^8.0.0 || ^9.0.0", "@nestjs/common@^7.0.8 || ^8.0.0 || ^9.0.0", "@nestjs/common@^8.0.0 || ^9.0.0", "@nestjs/common@^8.0.0 || ^9.0.0 || ^10.0.0", "@nestjs/common@^9.0.0", "@nestjs/common@^9.0.0 || ^10.0.0", "@nestjs/common@^9.3.8":
   "integrity" "sha512-Gd6D4IaYj01o14Bwv81ukidn4w3bPHCblMUq+SmUmWLyosK+XQmInCS09SbDDZyL8jy86PngtBLTdhJ2bXSUig=="
   "resolved" "https://registry.npmjs.org/@nestjs/common/-/common-9.4.3.tgz"
   "version" "9.4.3"
@@ -991,7 +996,7 @@
     "lodash" "4.17.21"
     "uuid" "9.0.0"
 
-"@nestjs/core@^6.10.11 || ^7.0.0 || ^8.0.0 || ^9.0.0", "@nestjs/core@^7.0.0 || ^8.0.0 || ^9.0.0", "@nestjs/core@^8.0.0 || ^9.0.0", "@nestjs/core@^9.0.0", "@nestjs/core@^9.3.8":
+"@nestjs/core@^6.10.11 || ^7.0.0 || ^8.0.0 || ^9.0.0", "@nestjs/core@^7.0.0 || ^8.0.0 || ^9.0.0", "@nestjs/core@^8.0.0 || ^9.0.0", "@nestjs/core@^9.0.0", "@nestjs/core@^9.0.0 || ^10.0.0", "@nestjs/core@^9.3.8":
   "integrity" "sha512-S5K9GTpjBqEJtu5VxRsVaaGEBZ1bkY+Ht4+2hqZSKsI+rzcEB5hcvR+5KiMsMY1VGYvlZ99lxYz72p4h8B0mKw=="
   "resolved" "https://npm.vexere.net/@nestjs%2fcore/-/core-9.4.2.tgz"
   "version" "9.4.2"
@@ -1167,6 +1172,40 @@
   "resolved" "https://registry.npmjs.org/@protobufjs/utf8/-/utf8-1.1.0.tgz"
   "version" "1.1.0"
 
+"@redis/bloom@1.2.0":
+  "integrity" "sha512-HG2DFjYKbpNmVXsa0keLHp/3leGJz1mjh09f2RLGGLQZzSHpkmZWuwJbAvo3QcRY8p80m5+ZdXZdYOSBLlp7Cg=="
+  "resolved" "https://registry.npmjs.org/@redis/bloom/-/bloom-1.2.0.tgz"
+  "version" "1.2.0"
+
+"@redis/client@^1.0.0", "@redis/client@1.5.8":
+  "integrity" "sha512-xzElwHIO6rBAqzPeVnCzgvrnBEcFL1P0w8P65VNLRkdVW8rOE58f52hdj0BDgmsdOm4f1EoXPZtH4Fh7M/qUpw=="
+  "resolved" "https://registry.npmjs.org/@redis/client/-/client-1.5.8.tgz"
+  "version" "1.5.8"
+  dependencies:
+    "cluster-key-slot" "1.1.2"
+    "generic-pool" "3.9.0"
+    "yallist" "4.0.0"
+
+"@redis/graph@1.1.0":
+  "integrity" "sha512-16yZWngxyXPd+MJxeSr0dqh2AIOi8j9yXKcKCwVaKDbH3HTuETpDVPcLujhFYVPtYrngSco31BUcSa9TH31Gqg=="
+  "resolved" "https://registry.npmjs.org/@redis/graph/-/graph-1.1.0.tgz"
+  "version" "1.1.0"
+
+"@redis/json@1.0.4":
+  "integrity" "sha512-LUZE2Gdrhg0Rx7AN+cZkb1e6HjoSKaeeW8rYnt89Tly13GBI5eP4CwDVr+MY8BAYfCg4/N15OUrtLoona9uSgw=="
+  "resolved" "https://registry.npmjs.org/@redis/json/-/json-1.0.4.tgz"
+  "version" "1.0.4"
+
+"@redis/search@1.1.3":
+  "integrity" "sha512-4Dg1JjvCevdiCBTZqjhKkGoC5/BcB7k9j99kdMnaXFXg8x4eyOIVg9487CMv7/BUVkFLZCaIh8ead9mU15DNng=="
+  "resolved" "https://registry.npmjs.org/@redis/search/-/search-1.1.3.tgz"
+  "version" "1.1.3"
+
+"@redis/time-series@1.0.4":
+  "integrity" "sha512-ThUIgo2U/g7cCuZavucQTQzA9g9JbDDY2f64u3AbAoz/8vE2lt2U37LamDUVChhaDA3IRT9R6VvJwqnUfTJzng=="
+  "resolved" "https://registry.npmjs.org/@redis/time-series/-/time-series-1.0.4.tgz"
+  "version" "1.0.4"
+
 "@sideway/address@^4.1.3":
   "integrity" "sha512-7vwq+rOHVWjyXxVlR76Agnvhy8I9rpzjosTESvmhNeXOXdZZB15Fl+TI9x1SiHZH5Jv2wTGduSxFDIaq0m3DUw=="
   "resolved" "https://npm.vexere.net/@sideway%2faddress/-/address-4.1.4.tgz"
@@ -1268,6 +1307,11 @@
   dependencies:
     "@types/connect" "*"
     "@types/node" "*"
+
+"@types/cache-manager@^4.0.2":
+  "integrity" "sha512-fT5FMdzsiSX0AbgnS5gDvHl2Nco0h5zYyjwDQy4yPC7Ww6DeGMVKPRqIZtg9HOXDV2kkc18SL1B0N8f0BecrCA=="
+  "resolved" "https://registry.npmjs.org/@types/cache-manager/-/cache-manager-4.0.2.tgz"
+  "version" "4.0.2"
 
 "@types/connect@*":
   "integrity" "sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ=="
@@ -2133,6 +2177,14 @@
   "resolved" "https://npm.vexere.net/bytes/-/bytes-3.1.2.tgz"
   "version" "3.1.2"
 
+"cache-manager@^5.2.3", "cache-manager@<=5":
+  "integrity" "sha512-9OErI8fksFkxAMJ8Mco0aiZSdphyd90HcKiOMJQncSlU1yq/9lHHxrT8PDayxrmr9IIIZPOAEfXuGSD7g29uog=="
+  "resolved" "https://registry.npmjs.org/cache-manager/-/cache-manager-5.2.3.tgz"
+  "version" "5.2.3"
+  dependencies:
+    "lodash.clonedeep" "^4.5.0"
+    "lru-cache" "^9.1.2"
+
 "call-bind@^1.0.0":
   "integrity" "sha512-7O+FbCihrB5WGbFYesctwmTKae6rOiIzmz1icreWJ+0aA7LJfuqhEso2T9ncpcFtzMQtzXf2QGGueWJGTYsqrA=="
   "resolved" "https://npm.vexere.net/call-bind/-/call-bind-1.0.2.tgz"
@@ -2293,7 +2345,7 @@
   "resolved" "https://npm.vexere.net/clone/-/clone-1.0.4.tgz"
   "version" "1.0.4"
 
-"cluster-key-slot@^1.1.0":
+"cluster-key-slot@^1.1.0", "cluster-key-slot@1.1.2":
   "integrity" "sha512-RMr0FhtfXemyinomL4hrWcYJxmX6deFdCxpJzhDttxgO1+bcCnkk+9drydLVDmAMG7NE6aN/fl4F7ucU/90gAA=="
   "resolved" "https://npm.vexere.net/cluster-key-slot/-/cluster-key-slot-1.1.2.tgz"
   "version" "1.1.2"
@@ -3118,6 +3170,11 @@
   "version" "2.3.1"
   dependencies:
     "is-property" "^1.0.2"
+
+"generic-pool@3.9.0":
+  "integrity" "sha512-hymDOu5B53XvN4QT9dBmZxPX4CWhBPPLguTZ9MMFeFa/Kg0xWVfylOVNlJji/E7yTZWFd/q9GO5TxDLq156D7g=="
+  "resolved" "https://registry.npmjs.org/generic-pool/-/generic-pool-3.9.0.tgz"
+  "version" "3.9.0"
 
 "gensync@^1.0.0-beta.2":
   "integrity" "sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg=="
@@ -4109,6 +4166,11 @@
   dependencies:
     "p-locate" "^5.0.0"
 
+"lodash.clonedeep@^4.5.0":
+  "integrity" "sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ=="
+  "resolved" "https://registry.npmjs.org/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz"
+  "version" "4.5.0"
+
 "lodash.defaults@^4.2.0":
   "integrity" "sha1-0JF4cW/+pN3p5ft7N/bwgCJ0WAw="
   "resolved" "https://npm.vexere.net/lodash.defaults/-/lodash.defaults-4.2.0.tgz"
@@ -4200,6 +4262,11 @@
   "integrity" "sha512-65/Jky17UwSb0BuB9V+MyDpsOtXKmYwzhyl+cOa9XUiI4uV2Ouy/2voFP3+al0BjZbJgMBD8FojMpAf+Z+qn4A=="
   "resolved" "https://npm.vexere.net/lru-cache/-/lru-cache-9.1.1.tgz"
   "version" "9.1.1"
+
+"lru-cache@^9.1.2":
+  "integrity" "sha512-ERJq3FOzJTxBbFjZ7iDs+NiK4VI9Wz+RdrrAB8dio1oV+YvdPzUEE4QNiT2VD51DkIbCYRUUzCRkssXCHqSnKQ=="
+  "resolved" "https://registry.npmjs.org/lru-cache/-/lru-cache-9.1.2.tgz"
+  "version" "9.1.2"
 
 "luxon@^3.2.1":
   "integrity" "sha512-An0UCfG/rSiqtAIiBPO0Y9/zAnHUZxAMiCpTd5h2smgsj7GGmcenvrvww2cqNA8/4A5ZrD1gJpHN2mIHZQF+Mg=="
@@ -4921,6 +4988,18 @@
   dependencies:
     "redis-errors" "^1.0.0"
 
+"redis@^3.1.1 || ^4.0.0":
+  "integrity" "sha512-KrkuNJNpCwRm5vFJh0tteMxW8SaUzkm5fBH7eL5hd/D0fAkzvapxbfGPP/r+4JAXdQuX7nebsBkBqA2RHB7Usw=="
+  "resolved" "https://registry.npmjs.org/redis/-/redis-4.6.7.tgz"
+  "version" "4.6.7"
+  dependencies:
+    "@redis/bloom" "1.2.0"
+    "@redis/client" "1.5.8"
+    "@redis/graph" "1.1.0"
+    "@redis/json" "1.0.4"
+    "@redis/search" "1.1.3"
+    "@redis/time-series" "1.0.4"
+
 "reflect-metadata@^0.1.12", "reflect-metadata@^0.1.13":
   "integrity" "sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg=="
   "resolved" "https://npm.vexere.net/reflect-metadata/-/reflect-metadata-0.1.13.tgz"
@@ -5016,7 +5095,7 @@
   dependencies:
     "queue-microtask" "^1.2.2"
 
-"rxjs@^6.0.0 || ^7.2.0", "rxjs@^7.1.0", "rxjs@^7.2.0", "rxjs@^7.5.5", "rxjs@7.8.1":
+"rxjs@^6.0.0 || ^7.2.0", "rxjs@^7.0.0", "rxjs@^7.1.0", "rxjs@^7.2.0", "rxjs@^7.5.5", "rxjs@7.8.1":
   "integrity" "sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg=="
   "resolved" "https://npm.vexere.net/rxjs/-/rxjs-7.8.1.tgz"
   "version" "7.8.1"
@@ -5844,7 +5923,7 @@
   "resolved" "https://npm.vexere.net/yallist/-/yallist-3.1.1.tgz"
   "version" "3.1.1"
 
-"yallist@^4.0.0":
+"yallist@^4.0.0", "yallist@4.0.0":
   "integrity" "sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A=="
   "resolved" "https://npm.vexere.net/yallist/-/yallist-4.0.0.tgz"
   "version" "4.0.0"
