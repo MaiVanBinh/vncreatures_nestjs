@@ -2,41 +2,35 @@ import { Type } from 'class-transformer';
 import {
   IsArray,
   IsBoolean,
+  IsEnum,
   IsInt,
-  IsNumber,
+  IsObject,
   IsOptional,
   IsString,
   ValidateNested,
 } from 'class-validator';
 
+export type TClassifyLabel = 'groups' | 'sets' | 'family';
+
+export enum ClassifyEnum {
+  GROUP = 'groups',
+  SETS = 'sets',
+  FAMILY = 'family',
+}
+
+export class TClassify {
+  @IsString()
+  @IsEnum(ClassifyEnum)
+  name: TClassifyLabel;
+
+  @IsArray()
+  @Type(() => Number)
+  value?: number[];
+}
 export class GetCreatureDto {
   @IsString()
   @IsOptional()
-  q?: string;
-
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => Number)
-  @IsOptional()
-  specie?: number[];
-
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => Number)
-  @IsOptional()
-  group?: number[];
-
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => Number)
-  @IsOptional()
-  family?: number[];
-
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => Number)
-  @IsOptional()
-  set?: number[];
+  keyword?: string;
 
   @IsBoolean()
   @IsOptional()
@@ -52,4 +46,15 @@ export class GetCreatureDto {
   @IsOptional()
   @Type(() => Number)
   page?: number;
+
+  @IsInt()
+  @Type(() => Number)
+  @IsOptional()
+  specie?: number;
+
+  @IsObject()
+  @ValidateNested()
+  @Type(() => TClassify)
+  @IsOptional()
+  classify?: TClassify;
 }

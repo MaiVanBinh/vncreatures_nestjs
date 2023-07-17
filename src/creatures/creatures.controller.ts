@@ -24,10 +24,10 @@ export class CreaturesController {
     return this.creaturesService.create(createCreatureDto);
   }
 
-  @Get()
+  @Post('get-list')
   @UseGuards(JwtAuthGuard)
-  findAll(@Query() query: GetCreatureDto) {
-    return this.creaturesService.findAll(query);
+  findAll(@Body() body: GetCreatureDto) {
+    return this.creaturesService.findAll(body);
   }
 
   @Get('red-book-by-type')
